@@ -96,7 +96,7 @@ def main():
     ap.add_argument(
         "-p",
         "--port",
-        default=5000,
+        default=9339,
         type=int,
         help="The port to bind to.",
     )
