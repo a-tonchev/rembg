@@ -24,16 +24,28 @@ def img_to_base64_str(buf):
 @app.route("/", methods=["GET", "POST"])
 def index():
     file_content = ""
-
+    alpha_matting = False
+    af = 240
+    ab = 10
+    ae = 10
+    az = 1000
     if request.method == "POST" and "image_data" in request.json:
         json_data = request.get_json()
         image_data = json_data['image_data']
         file_content = base64.b64decode(image_data)
-        alpha_matting = json_data['a'] or False
-        af = json_data['af'] or 240
-        ab = json_data['ab'] or 10
-        ae = json_data['ae'] or 10
-        az = json_data['az'] or 1000
+        if "a" in json_data:
+            alpha_matting = json_data['a']
+            if alpha_matting:
+                if "af" in json_data:
+                    af = json_data['af']
+                if "ab" in json_data:
+                    ab = json_data['ab']
+                if "ae" in json_data:
+                    ae = json_data['ae']
+                if "az" in json_data:
+                    az = json_data["az"]
+        else:
+            alpha_matting = False
 
     if request.method == "GET":
         url = request.args.get("url", type=str)
