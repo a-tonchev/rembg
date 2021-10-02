@@ -1,5 +1,20 @@
 # Rembg
 
+This is a fork that I use as a post/get server and pyinstaller, to make it work:
+
+```
+import sys
+sys.path.insert(0, '[pathTo]/rembg/src/rembg')
+
+import rembg
+
+from rembg.src.rembg.cmd import server
+
+import importlib
+
+server.main();
+```
+
 [![Downloads](https://pepy.tech/badge/rembg)](https://pepy.tech/project/rembg)
 [![Downloads](https://pepy.tech/badge/rembg/month)](https://pepy.tech/project/rembg/month)
 [![Downloads](https://pepy.tech/badge/rembg/week)](https://pepy.tech/project/rembg/week)
