@@ -46,7 +46,6 @@ def index():
                     az = json_data["az"]
         else:
             alpha_matting = False
-
     if request.method == "GET":
         url = request.args.get("url", type=str)
         if url is None:
@@ -73,7 +72,6 @@ def index():
 
     if model not in model_choices:
         return {"error": f"invalid query param 'model'. Available options are {model_choices}"}, 400
-
     try:
         file_without_background = remove(
                                          file_content,
@@ -86,6 +84,7 @@ def index():
                                      )
         file_data = BytesIO(file_without_background)
         encoded = img_to_base64_str(file_data)
+
         return jsonify(
             converted_image=encoded,
         )
@@ -114,8 +113,9 @@ def main():
     )
 
     args = ap.parse_args()
+
+    print("Server Start at {port}".format(port=args.port))
     serve(app, host=args.addr, port=args.port)
-
-
+    print('Server Stop')
 if __name__ == "__main__":
     main()
